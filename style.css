@@ -42,3 +42,13 @@ h1 {
   margin-left: 440px;
   margin-bottom: 50px;
 }
+
+#clear-board {
+  width: 100px;
+  margin-left: 470px;
+  display: inline-block;
+  text-align: center;
+  background-color: black;
+  border-color: blue;
+  color: white;
+}

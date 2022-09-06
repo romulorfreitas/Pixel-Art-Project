@@ -16,7 +16,6 @@ function randomAllColors() {
     // console.log(mathRandomColor);
     // console.log(colorElement[index].style.backgroundColor);
   }
-  // eslint-disable-next-line no-use-before-define
   saveColors();
 }
 
@@ -59,9 +58,6 @@ function makeSquares() {
 
 // REQUISITO 09
 
-// const selectedPallet = document.querySelector('.selected');
-// console.log(selectedPallet);
-
 function removeSelectColor() {
   for (let index = 0; index < allSquares.length; index += 1) {
     allSquares[index].classList.remove('selected');
@@ -79,8 +75,21 @@ function paintingSquares() {
   }
 }
 
-// const blackClassBox = document.getElementsByClassName('.selected');
-// blackClassBox.style.backgroundColor = 'black';
+// REQUISITO 10
+
+function getColorsToPaint() {
+  let boxes = document.querySelectorAll('.pixel');
+  // console.log(boxes);
+  for (let index = 0; index < boxes.length; index += 1) {
+    boxes[index].addEventListener('click', paintingBoxes);
+  }
+}
+
+function paintingBoxes(evento) {
+  let selectedFisrt = document.querySelector('.selected');
+  evento.target.style.backgroundColor = selectedFisrt.style.backgroundColor;
+}
+
 document
   .getElementById('button-random-color')
   .addEventListener('click', randomAllColors);
@@ -89,3 +98,4 @@ fisrtColor();
 loadColors();
 makeSquares();
 paintingSquares();
+getColorsToPaint();

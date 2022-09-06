@@ -1,22 +1,11 @@
-const combinations = [
-  [0, 1, 2, 3, 4],
-  [5, 6, 7, 8, 9],
-  [10, 11, 12, 13, 14],
-  [15, 16, 17, 18, 19],
-  [20, 21, 22, 23, 24],
-  [0, 5, 10, 15, 20],
-  [1, 6, 11, 16, 21],
-  [2, 7, 12, 17, 22],
-  [3, 8, 13, 18, 23],
-  [4, 9, 14, 19, 24],
-];
+const pixelBoard = document.querySelector('.createDivs');
+const allSquares = document.querySelectorAll('.color');
 
 // REQUISITO 03 - created a function to set fisrt square as black color background
 function fisrtColor() {
   const firstBox = document.getElementById('black');
   firstBox.style.backgroundColor = 'black';
 }
-fisrtColor();
 
 // REQUISITO 04 - Created a function to send random colors to last three squares when "cores aleatorias" buttom is used.
 function randomAllColors() {
@@ -27,12 +16,9 @@ function randomAllColors() {
     // console.log(mathRandomColor);
     // console.log(colorElement[index].style.backgroundColor);
   }
+  // eslint-disable-next-line no-use-before-define
   saveColors();
 }
-
-document
-  .getElementById('button-random-color')
-  .addEventListener('click', randomAllColors);
 
 // REQUISITO 05 - created a function to storage the random colors after reload the window. Got insights from Henrique and Fransuelio.
 
@@ -58,12 +44,9 @@ function loadColors() {
   document.getElementById('random2').style.backgroundColor = reserveKey[1];
   document.getElementById('random3').style.backgroundColor = reserveKey[2];
 }
-loadColors();
 
 // REQUISITO 06 - created a board with 25 pixels using a function with a loop "for" and the "appendChild" to add the
 // 25 pixel to pixelBoard div.
-
-const pixelBoard = document.querySelector('.createDivs');
 
 function makeSquares() {
   for (let index = 0; index < 25; index += 1) {
@@ -73,6 +56,36 @@ function makeSquares() {
     pixelBoard.appendChild(newSquares);
   }
 }
-makeSquares();
 
-// const celulas = document.querySelectorAll('.pixel');
+// REQUISITO 09
+
+// const selectedPallet = document.querySelector('.selected');
+// console.log(selectedPallet);
+
+function removeSelectColor() {
+  for (let index = 0; index < allSquares.length; index += 1) {
+    allSquares[index].classList.remove('selected');
+  }
+}
+
+function selectColor(event) {
+  removeSelectColor();
+  event.target.className = 'color selected';
+}
+
+function paintingSquares() {
+  for (let index = 0; index < allSquares.length; index += 1) {
+    allSquares[index].addEventListener('click', selectColor);
+  }
+}
+
+// const blackClassBox = document.getElementsByClassName('.selected');
+// blackClassBox.style.backgroundColor = 'black';
+document
+  .getElementById('button-random-color')
+  .addEventListener('click', randomAllColors);
+
+fisrtColor();
+loadColors();
+makeSquares();
+paintingSquares();
